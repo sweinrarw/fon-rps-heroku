@@ -12,6 +12,9 @@ console.log('Sever running...');
 app.get('/', function (rer, res) {
     res.sendFile(__dirname + '/views/index.html')
 });
+app.get('/chat', function (rer, res) {
+    res.sendFile(__dirname + '/views/chat-now.html')
+});
 
 io.sockets.on('connection', function (socket) {
     connections.push(socket);
