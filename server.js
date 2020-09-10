@@ -10,7 +10,7 @@ server.listen(process.env.PORT || 3000);
 console.log('Sever running...');
 
 app.get('/', function (rer, res) {
-    res.sendFile(__dirname + 'index.html')
+    res.sendFile(__dirname + '/views/index.html')
 });
 
 io.sockets.on('connection', function (socket) {
