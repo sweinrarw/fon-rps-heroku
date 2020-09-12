@@ -174,6 +174,7 @@ io.sockets.on('connection', function (socket) {
                 default:
                     break;
             }
+            io.emit('end round', results);
             currentRound++;
             choices = [];
         }

@@ -22,6 +22,9 @@
       .chat {
         height: 340px;
       }
+      #resultsContainer {
+        display: none;
+      }
     </style>
   </head>
   <body>
@@ -102,18 +105,9 @@
             <p id="info" class="text-info">Waiting for players...</p>
           </div>
 
-          <div class="container navbar-fixed-bottom">
-            <div class="chat pre-scrollable" id="chat"></div>
-            <form id="messageForm">
-              <label>Enter Message</label>
-              <textarea class="form-control" id="message"> </textarea>
-              <br />
-              <input
-                type="submit"
-                class="btn btn-primary"
-                value="Send message"
-              />
-            </form>
+          <div class="container navbar-fixed-bottom" id="resultsContainer">
+            <h4>Round Info</h4>
+            <ul class="list-group" id="results"></ul>
           </div>
         </div>
       </div>
@@ -132,6 +126,7 @@
         var $username = $("#username");
         var $game = $("#game");
         var $info = $("#info");
+        var $resultsContainer = $("#resultsContainer");
         var submitted = false;
 
         $messageForm.submit(function (e) {
@@ -241,6 +236,10 @@
           }, 5000);
 
           submitted = false;
+        });
+
+        socket.on("end round", function (results) {
+          $resultsContainer.show();
         });
 
         function countdown(choices) {
