@@ -101,52 +101,24 @@
             <h4>Information</h4>
             <p id="info" class="text-info">Waiting for players...</p>
           </div>
+
+          <div class="container navbar-fixed-bottom">
+            <div class="chat pre-scrollable" id="chat"></div>
+            <form id="messageForm">
+              <label>Enter Message</label>
+              <textarea class="form-control" id="message"> </textarea>
+              <br />
+              <input
+                type="submit"
+                class="btn btn-primary"
+                value="Send message"
+              />
+            </form>
           </div>
         </div>
       </div>
     </div>
-    <script type="text/javascript">
-      window._chatlio = window._chatlio || [];
-      !(function () {
-        var t = document.getElementById("chatlio-widget-embed");
-        if (t && window.ChatlioReact && _chatlio.init)
-          return void _chatlio.init(t, ChatlioReact);
-        for (
-          var e = function (t) {
-              return function () {
-                _chatlio.push([t].concat(arguments));
-              };
-            },
-            i = [
-              "configure",
-              "identify",
-              "track",
-              "show",
-              "hide",
-              "isShown",
-              "isOnline",
-              "page",
-              "open",
-              "showOrHide",
-            ],
-            a = 0;
-          a < i.length;
-          a++
-        )
-          _chatlio[i[a]] || (_chatlio[i[a]] = e(i[a]));
-        var n = document.createElement("script"),
-          c = document.getElementsByTagName("script")[0];
-        (n.id = "chatlio-widget-embed"),
-          (n.src = "https://w.chatlio.com/w.chatlio-widget.js"),
-          (n.async = !0),
-          n.setAttribute("data-embed-version", "2.3");
-        n.setAttribute(
-          "data-widget-id",
-          "611be70c-a89d-47db-6cae-4159670fbf67"
-        );
-        c.parentNode.insertBefore(n, c);
-      })();
-    </script>
+
     <script>
       $(function () {
         var socket = io.connect();
@@ -220,9 +192,11 @@
 
         socket.on("get user", function (data) {
           var html = "";
-          for (i = 0; i < 3; i++) {
+
+          for (i = 0; i < data.length; i++) {
             html += '<li class="list-group-item">' + data[i] + "</li>";
           }
+
           $users.html(html);
         });
 
