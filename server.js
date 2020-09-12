@@ -1,4 +1,3 @@
-var Tick = require('@pqina/flip');
 var express = require('express');
 var app = express();
 var server = require('http').createServer(app);
@@ -14,7 +13,6 @@ score2 = 0;
 
 server.listen(process.env.PORT || 3000);
 console.log('Sever running...');
-console.log(Tick);
 
 app.get('/', function (rer, res) {
     res.sendFile(__dirname + '/views/index.html')

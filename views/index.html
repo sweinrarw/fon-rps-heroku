@@ -18,6 +18,9 @@
       integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
       crossorigin="anonymous"
     ></script>
+    <link rel="stylesheet" href="/booty/flip.min.css" />
+    <script src="/booty/flip.min.js"></script>
+    <link rel="stylesheet" href="/booty/countdownFlip.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
     <style>
       body {
@@ -58,6 +61,27 @@
             <br />
             <input type="submit" class="btn btn-primary" value="Login" />
           </form>
+        </div>
+      </div>
+      <div class="row">
+        <div class="tick" data-did-init="handleTickInit">
+          <div
+            data-repeat="true"
+            data-layout="horizontal fit"
+            data-transform="preset(d, h, m, s) -> delay"
+          >
+            <div class="tick-group">
+              <div
+                data-key="value"
+                data-repeat="true"
+                data-transform="pad(00) -> split -> delay"
+              >
+                <span data-view="flip"></span>
+              </div>
+
+              <span data-key="label" data-view="text" class="tick-label"></span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -279,6 +303,13 @@
           }, 4000);
         }
       });
+    </script>
+    <script>
+      function handleTickInit(tick) {
+        Tick.count.schedule("every 2 hours").onupdate = function (value) {
+          tick.value = value;
+        };
+      }
     </script>
   </body>
 </html>
