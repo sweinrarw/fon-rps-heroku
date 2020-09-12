@@ -1,7 +1,7 @@
 {
   "name": "fon-rps-heroku",
   "version": "1.0.0",
-  "description": "",
+  "description": "RockPaperScissors",
   "main": "index.js",
   "engines": {
     "node": "12.17.x"
@@ -18,13 +18,14 @@
     "url": "git+https://github.com/sweinrarw/fon-rps-heroku.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "swein",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/sweinrarw/fon-rps-heroku/issues"
   },
   "homepage": "https://github.com/sweinrarw/fon-rps-heroku#readme",
   "dependencies": {
+    "@pqina/flip": "^1.7.7",
     "express": "^4.17.1",
     "socket.io": "^2.3.0"
   }
