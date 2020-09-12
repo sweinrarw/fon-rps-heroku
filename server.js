@@ -1,4 +1,4 @@
-import Tick from '@pqina/flip';
+var Tick = require('./@pqina/flip');
 var express = require('express');
 var app = express();
 var server = require('http').createServer(app);
