@@ -7,9 +7,9 @@
     "node": "12.17.x"
   },
   "scripts": {
-    "build-broke": "npm run pre-build && npm run post-build",
-    "builder": "git add . && git commit -m 'build'",
-    "deploy": "git push heroku master",
+    "builder": "npm run pre-builder && npm run post-builder",
+    "pre-builder": "git add . && git commit -m 'build'",
+    "post-builder": "git push heroku master",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
