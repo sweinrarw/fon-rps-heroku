@@ -5,6 +5,11 @@ var io = require('socket.io').listen(server);
 users = [];
 connections = [];
 choices = [];
+rounds = [];
+maxRounds = 3;
+currentRound = 0;
+score1 = 0;
+score2 = 0;
 
 server.listen(process.env.PORT || 3000);
 console.log('Sever running...');
@@ -67,14 +72,29 @@ io.sockets.on('connection', function (socket) {
                     switch (choices[1]['choice']) {
                         case 'rock':
                             io.emit('tie', choices);
+                            results.push({
+                                'round': currentRound,
+                                'winner': 0,
+                                'choices': choices
+                            })
                             break;
 
                         case 'paper':
                             io.emit('player 2 win', choices);
+                            results.push({
+                                'round': currentRound,
+                                'winner': 2,
+                                'choices': choices
+                            })
                             break;
 
                         case 'scissors':
                             io.emit('player 1 win', choices);
+                            results.push({
+                                'round': currentRound,
+                                'winner': 1,
+                                'choices': choices
+                            })
                             break;
 
                         default:
@@ -86,14 +106,29 @@ io.sockets.on('connection', function (socket) {
                     switch (choices[1]['choice']) {
                         case 'rock':
                             io.emit('player 1 win', choices);
+                            results.push({
+                                'round': currentRound,
+                                'winner': 1,
+                                'choices': choices
+                            })
                             break;
 
                         case 'paper':
                             io.emit('tie', choices);
+                            results.push({
+                                'round': currentRound,
+                                'winner': 0,
+                                'choices': choices
+                            })
                             break;
 
                         case 'scissors':
                             io.emit('player 2 win', choices);
+                            results.push({
+                                'round': currentRound,
+                                'winner': 2,
+                                'choices': choices
+                            })
                             break;
 
                         default:
@@ -105,14 +140,30 @@ io.sockets.on('connection', function (socket) {
                     switch (choices[1]['choice']) {
                         case 'rock':
                             io.emit('player 2 win', choices);
+                            results.push({
+                                'round': currentRound,
+                                'winner': 2,
+                                'choices': choices
+                            })
                             break;
 
                         case 'paper':
                             io.emit('player 1 win', choices);
+                            results.push({
+                                'round': currentRound,
+                                'winner': 1,
+                                'choices': choices
+                            })
                             break;
 
                         case 'scissors':
                             io.emit('tie', choices);
+
+                            results.push({
+                                'round': currentRound,
+                                'winner': 0,
+                                'choices': choices
+                            })
                             break;
 
                         default:
@@ -123,7 +174,7 @@ io.sockets.on('connection', function (socket) {
                 default:
                     break;
             }
-
+            currentRound++;
             choices = [];
         }
     });

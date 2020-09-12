@@ -1,13 +1,14 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
     <title>Rock, paper, scissors</title>
     <link
       rel="stylesheet"
       media="screen"
-      href="//netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"
+      href="//stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
     <script src="//code.jquery.com/jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
     <style>
       body {
         margin-top: 30px;
@@ -100,6 +101,14 @@
             <h4>Information</h4>
             <p id="info" class="text-info">Waiting for players...</p>
           </div>
+          <div class="roundBox">
+            <h3 id="roundCount">Round</h3>
+          </div>
+          <div class="scoreBox">
+            <h3>Score</h3>
+            <div class="row" id="scoreStuff"></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -155,6 +164,7 @@
         var $userFormArea = $("#userFormArea");
         var $userForm = $("#userForm");
         var $users = $("#users");
+        var $results = $("#results");
         var $username = $("#username");
         var $game = $("#game");
         var $info = $("#info");
@@ -218,11 +228,13 @@
 
         socket.on("get user", function (data) {
           var html = "";
-
-          for (i = 0; i < data.length; i++) {
+          var html1 ="";
+          for (i = 0; i < 3; i++) {
+            j=1;
             html += '<li class="list-group-item">' + data[i] + "</li>";
+            html1 += '<div class="col" id="playerData'+j+'">'+data[i]+ "</div>";
           }
-
+          $scoreStuff.html(html1);
           $users.html(html);
         });
 
@@ -236,6 +248,7 @@
 
         socket.on("game start", function () {
           $game.show();
+          $roundCount.append("1");
           $info.append("<br />Make your choice.");
         });
 
