@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Follow</title>
+    <link
+      rel="stylesheet"
+      media="screen"
+      href="//stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <script src="//code.jquery.com/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+  </head>
+  <style></style>
+  <body>
+    <div class="container"></div>
+  </body>
+</html>
+<script type="text/javascript">
+  jQuery(document).ready(function () {
+    if (jQuery("#sessionData").length) {
+      var followingData = JSON.parse(localStorage.getItem("sessionData"));
+      console.log("sessionDataFound");
+    }
+  });
+</script>
