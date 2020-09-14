@@ -32,6 +32,9 @@
       .chat {
         height: 340px;
       }
+      .showGame {
+        display: flex;
+      }
     </style>
   </head>
   <body>
@@ -191,6 +194,7 @@
             if (data) {
               $userFormArea.hide();
               $gameArea.show();
+              $gameArea.toggleClass("showGame");
               $game.hide();
             } else {
               alert($username.val() + " username is already in use.");
