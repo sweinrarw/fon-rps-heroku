@@ -193,8 +193,8 @@
           socket.emit("add user", $username.val(), function (data) {
             if (data) {
               $userFormArea.hide();
-              $gameArea.show();
-              $gameArea.toggleClass("showGame");
+
+              $gameArea.css("display", "flex");
               $game.hide();
             } else {
               alert($username.val() + " username is already in use.");
