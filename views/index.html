@@ -193,7 +193,6 @@
           socket.emit("add user", $username.val(), function (data) {
             if (data) {
               $userFormArea.hide();
-
               $gameArea.css("display", "flex");
               $game.hide();
             } else {
